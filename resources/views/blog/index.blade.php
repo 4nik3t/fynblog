@@ -14,17 +14,37 @@
                 <table class="table-auto mx-auto m-20">
                     <thead>
                         <tr>
+                            <th class="px-4 py-2">#</th>
                             <th class="px-4 py-2">Title</th>
                             <th class="px-4 py-2">Views</th>
+                            <th class="px-4 py-2">Created At</th>
+                            <th class="px-4 py-2">Published At</th>
                             <th class="px-4 py-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="border px-4 py-2">Intro to CSS</td>
-                            <td class="border px-4 py-2">Adam</td>
-                            <td class="border px-4 py-2">858</td>
-                        </tr>
+                        @foreach ($blogs as $blog)
+                            <tr>
+                            <td class="border px-4 py-2">{{$blog->id}}</td>
+                            <td class="border px-4 py-2">{{$blog->title}}</td>
+                            <td class="border px-4 py-2">{{$blog->user_id}}</td>
+                            <td class="border px-4 py-2">{{$blog->created_at->diffForHumans()}}</td>
+                            <td class="border px-4 py-2">
+                                @if ($blog->published_at)
+                                    {{$blog->published_at->diffForHumans()}}
+                                @else
+                                    Not Yet Published
+                                @endif
+                                
+                            </td>
+                            <td class="border px-4 py-4">
+                                <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " 
+                                    href="{{route('blog.edit',$blog)}}">Edit</a>
+                                <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded " 
+                                    href="{{route('blog.destroy',$blog)}}">Delete</a>
+                            </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

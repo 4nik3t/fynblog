@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class BlogController extends Controller
 {
@@ -14,7 +16,9 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('blog.index');
+        $blogs = Blog::all();
+
+        return view('blog.index', ['blogs' => $blogs]);
     }
 
     /**
@@ -35,6 +39,15 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        $blog = new Blog();
+
+        $blog->fill($request->all());
+
+        $blog->user()->associate(Auth::user());
+
+        $blog->save();
+
+        return Redirect::route('blog.index');
         //
     }
 
