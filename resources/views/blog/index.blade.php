@@ -16,6 +16,7 @@
                         <tr>
                             <th class="px-4 py-2">#</th>
                             <th class="px-4 py-2">Title</th>
+                            <th class="px-4 py-2">Slug</th>
                             <th class="px-4 py-2">Views</th>
                             <th class="px-4 py-2">Created At</th>
                             <th class="px-4 py-2">Published At</th>
@@ -27,6 +28,7 @@
                             <tr>
                             <td class="border px-4 py-2">{{$blog->id}}</td>
                             <td class="border px-4 py-2">{{$blog->title}}</td>
+                            <td class="border px-4 py-2">{{$blog->slug}}</td>
                             <td class="border px-4 py-2">{{$blog->user_id}}</td>
                             <td class="border px-4 py-2">{{$blog->created_at->diffForHumans()}}</td>
                             <td class="border px-4 py-2">
