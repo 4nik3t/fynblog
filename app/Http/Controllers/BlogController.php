@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBlogPost;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,17 +38,17 @@ class BlogController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBlogPost $request)
     {
         $blog = new Blog();
 
-        $blog->fill($request->all());
+        $blog->fill($request->validated());
 
         $blog->user()->associate(Auth::user());
 
         $blog->save();
 
-        return Redirect::route('blog.index');
+        return Redirect::route('blog.index')->with('status', 'Blog Post created!');
         //
     }
 
@@ -80,15 +81,15 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(StoreBlogPost $request, Blog $blog)
     {
-        $blog->fill($request->all());
+        $blog->fill($request->validated());
 
         $blog->user()->associate(Auth::user());
 
         $blog->save();
 
-        return Redirect::route('blog.index');
+        return Redirect::route('blog.index')->with('status', 'Blog Post updated!');
     }
 
     /**
@@ -101,6 +102,6 @@ class BlogController extends Controller
     {
         $blog->delete();
 
-        return Redirect::route('blog.index');
+        return Redirect::route('blog.index')->with('status', 'Blog Post Deleted!');
     }
 }

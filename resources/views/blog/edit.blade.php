@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg flex justify-center items-center">
-                <form class="w-full max-w-lg p-8" action="{{ route('blog.update',$blog) }}" method="post">
+                <form class="w-full max-w-lg p-8" action="{{ route('blog.update', $blog) }}" method="post">
                     @method('PUT')
                     @csrf
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -19,7 +19,11 @@
                             </label>
                             <input name="title"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                id="grid-first-name" type="text" placeholder="Jane" value="{{ $blog->title }}">
+                                id="grid-first-name" type="text" placeholder="Jane"
+                                value="{{ old('title', $blog->title) }}">
+                            @error('title')
+                            <p class="text-red-400 m-2">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -29,7 +33,10 @@
                             <textarea
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border 
                                 border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                rows="10" name="content">{{ $blog->content }}</textarea>
+                                rows="10" name="content">{{ old('content', $blog->content) }}</textarea>
+                            @error('content')
+                            <p class="text-red-400 m-2">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="w-full px-3 flex justify-center">
                             <button type="submit"
