@@ -70,7 +70,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return view('blog.edit');
+        return view('blog.edit', ['blog' => $blog]);
     }
 
     /**
@@ -82,7 +82,13 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
-        //
+        $blog->fill($request->all());
+
+        $blog->user()->associate(Auth::user());
+
+        $blog->save();
+
+        return Redirect::route('blog.index');
     }
 
     /**
@@ -93,6 +99,8 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        $blog->delete();
+
+        return Redirect::route('blog.index');
     }
 }

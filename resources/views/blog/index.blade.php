@@ -24,29 +24,44 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($blogs as $blog)
+
+                        @if (count($blogs))
+                            @foreach ($blogs as $blog)
                             <tr>
-                            <td class="border px-4 py-2">{{$blog->id}}</td>
-                            <td class="border px-4 py-2">{{$blog->title}}</td>
-                            <td class="border px-4 py-2">{{$blog->slug}}</td>
-                            <td class="border px-4 py-2">{{$blog->user_id}}</td>
-                            <td class="border px-4 py-2">{{$blog->created_at->diffForHumans()}}</td>
-                            <td class="border px-4 py-2">
-                                @if ($blog->published_at)
-                                    {{$blog->published_at->diffForHumans()}}
-                                @else
-                                    Not Yet Published
-                                @endif
-                                
-                            </td>
-                            <td class="border px-4 py-4">
-                                <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " 
-                                    href="{{route('blog.edit',$blog)}}">Edit</a>
-                                <a class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded " 
-                                    href="{{route('blog.destroy',$blog)}}">Delete</a>
-                            </td>
+                                <td class="border px-4 py-2">{{$blog->id}}</td>
+                                <td class="border px-4 py-2">{{$blog->title}}</td>
+                                <td class="border px-4 py-2">{{$blog->slug}}</td>
+                                <td class="border px-4 py-2">{{$blog->user_id}}</td>
+                                <td class="border px-4 py-2">{{$blog->created_at->diffForHumans()}}</td>
+                                <td class="border px-4 py-2">
+                                    @if ($blog->published_at)
+                                        {{$blog->published_at->diffForHumans()}}
+                                    @else
+                                        Not Yet Published
+                                    @endif
+                                    
+                                </td>
+                                <td class="border px-4 py-4">
+                                    <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded " 
+                                        href="{{route('blog.edit',$blog)}}">Edit</a>
+                                    <form action="{{route('blog.destroy',$blog)}}" method="POST" class="inline">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded " 
+                                        href="{{route('blog.destroy',$blog)}}">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
-                        @endforeach
+                            @endforeach
+                        
+                        @else
+
+                        <tr class="bg-yellow-100 p-8 text-center">
+                            <td colspan="7"> You have not created any blogs.</td>
+                        </tr>
+
+                        @endif
+
                     </tbody>
                 </table>
             </div>
