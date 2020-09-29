@@ -64,7 +64,7 @@
                         @else
 
                             <tr class="bg-yellow-100 p-8 text-center">
-                                <td colspan="7"> You have not created any blogs.</td>
+                                <td colspan="7" class="p-1"> You have not created any blogs.</td>
                             </tr>
 
                         @endif
