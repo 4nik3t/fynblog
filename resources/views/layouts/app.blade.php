@@ -14,6 +14,8 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    <link rel="shortcut icon" href="/icon.png">
+
     @livewireStyles
 
     <!-- Scripts -->

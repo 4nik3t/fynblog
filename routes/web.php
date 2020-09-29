@@ -22,4 +22,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::post('blog/{blog}/publish', [BlogController::class, 'publish'])->name('blog.publish');
+
 Route::middleware(['auth:sanctum', 'verified'])->resource('blog', BlogController::class);

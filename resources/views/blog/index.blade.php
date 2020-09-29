@@ -21,7 +21,7 @@
                             <th class="px-4 py-2">Views</th>
                             <th class="w-1/8 px-4 py-2">Created</th>
                             <th class="w-1/8 px-4 py-2">Published</th>
-                            <th class="w-1/6 px-4 py-2">Action</th>
+                            <th class="w-1/4 px-4 py-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,14 +43,19 @@
 
                                     </td>
                                     <td class="border px-4 py-4">
-                                        <a class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
-                                            href="{{ route('blog.edit', $blog) }}">Edit</a>
+                                        <form action="{{ route('blog.publish', $blog) }}" method="POST" class="inline">
+                                            @csrf
+                                            <button type="submit"
+                                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ">Publish</button>
+                                        </form>
+
+                                        <a class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
+                                            href=" {{ route('blog.edit', $blog) }}">Edit</a>
                                         <form action="{{ route('blog.destroy', $blog) }}" method="POST" class="inline">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit"
-                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded "
-                                                href="{{ route('blog.destroy', $blog) }}">Delete</button>
+                                                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ">Delete</button>
                                         </form>
                                     </td>
                                 </tr>

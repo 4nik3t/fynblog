@@ -92,6 +92,14 @@ class BlogController extends Controller
         return Redirect::route('blog.index')->with('status', 'Blog Post updated!');
     }
 
+
+    public function publish(Blog $blog)
+    {
+        $blog->publish();
+
+        return Redirect::route('blog.index')->with('status', 'Blog Post published!');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

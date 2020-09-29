@@ -21,6 +21,12 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function publish()
+    {
+        $this->published_at = now();
+        $this->save();
+    }
+
     /**
      * Get the options for generating the slug.
      */
