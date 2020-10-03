@@ -44,13 +44,14 @@
                 </div>
             </div>
             @foreach ($blogs as $blog)
-                <div class="max-w-sm w-1/4 rounded overflow-hidden shadow-lg m-5 relative">
+                <div class="max-w-sm w-1/4 rounded overflow-hidden shadow-lg m-5 relative h-80">
                     <a href="{{ route('single_blog_post', $blog->slug) }}" class="absolute top-0 left-0 h-full w-full"></a>
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2">{{ $blog->title }}</div>
                         <p class="text-gray-700 text-base">
                             {{ Str::limit($blog->content, 200) }}
                         </p>
+                        <p class="mt-2 absolute bottom-4"><b>Author:</b> {{ $blog->user->name }}</p>
                     </div>
                 </div>
             @endforeach

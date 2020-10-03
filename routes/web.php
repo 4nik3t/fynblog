@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Session;
 Route::get('/', [BlogController::class, 'displayPublishedPostList'])->name('home');
 
 Route::get('/post/{slug}', function ($slug) {
-    $blog = Blog::where("slug", $slug)->first();
+    $blog = Blog::with('user')->where("slug", $slug)->first();
 
     if (!Session::get($blog->id . '_read')) {
         $blog->increment('views');

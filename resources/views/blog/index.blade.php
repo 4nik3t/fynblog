@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl mx-auto sm:rounded-lg relative px-8">
                 <a href="{{ route('blog.create') }}"
-                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded absolute top-10 right-10">
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded absolute top-10 right-10 ">
                     New Blog
                 </a>
                 <table class="table-fixed mx-auto m-32">
@@ -81,6 +81,9 @@
 
                     </tbody>
                 </table>
+                <div class="mb-16">
+                    {{ $blogs->links() }}
+                </div>
             </div>
         </div>
     </div>

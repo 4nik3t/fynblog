@@ -28,6 +28,7 @@
 
         <div class="mt-5">
             <h1 class="text-3xl mt-2">{{ $blog->title }}</h1>
+            <h4 class="mt-2"><b>Author : </b>{{ $blog->user->name }}</h4>
             <div class="mt-4 block">
                 {{ $blog->content }}
             </div>

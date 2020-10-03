@@ -18,14 +18,14 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with('category')->get();
+        $blogs = Blog::with('category')->paginate(10);
 
         return view('blog.index', ['blogs' => $blogs]);
     }
 
     public function displayPublishedPostList(Request $request)
     {
-        $blogs = Blog::published();
+        $blogs = Blog::with('user')->published();
 
         if ($category_id = $request->get('category_id')) {
             $blogs->where('category_id', $category_id);
