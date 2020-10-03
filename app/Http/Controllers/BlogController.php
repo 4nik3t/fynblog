@@ -60,7 +60,6 @@ class BlogController extends Controller
      */
     public function show(Blog $blog)
     {
-        //
     }
 
     /**
@@ -98,6 +97,13 @@ class BlogController extends Controller
         $blog->publish();
 
         return Redirect::route('blog.index')->with('status', 'Blog Post published!');
+    }
+
+    public function unpublish(Blog $blog)
+    {
+        $blog->unpublish();
+
+        return Redirect::route('blog.index')->with('status', 'Blog Post unpublished!');
     }
 
     /**

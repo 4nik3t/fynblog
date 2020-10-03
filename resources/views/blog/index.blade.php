@@ -21,7 +21,7 @@
                             <th class="px-4 py-2">Views</th>
                             <th class="w-1/8 px-4 py-2">Created</th>
                             <th class="w-1/8 px-4 py-2">Published</th>
-                            <th class="w-1/4 px-4 py-2">Action</th>
+                            <th class="w-1/3 px-4 py-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,7 +32,7 @@
                                     <td class="border px-4 py-2">{{ $blog->id }}</td>
                                     <td class="border px-4 py-2">{{ $blog->title }}</td>
                                     <td class="border px-4 py-2">{{ $blog->slug }}</td>
-                                    <td class="border px-4 py-2">{{ $blog->user_id }}</td>
+                                    <td class="border px-4 py-2">{{ $blog->views }}</td>
                                     <td class="border px-4 py-2">{{ $blog->created_at->diffForHumans() }}</td>
                                     <td class="border px-4 py-2">
                                         @if ($blog->published_at)
@@ -43,11 +43,21 @@
 
                                     </td>
                                     <td class="border px-4 py-4">
-                                        <form action="{{ route('blog.publish', $blog) }}" method="POST" class="inline">
-                                            @csrf
-                                            <button type="submit"
-                                                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ">Publish</button>
-                                        </form>
+                                        @if ($blog->published_at)
+                                            <form action="{{ route('blog.unpublish', $blog) }}" method="POST"
+                                                class="inline">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded ">Unpublish</button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('blog.publish', $blog) }}" method="POST"
+                                                class="inline">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ">Publish</button>
+                                            </form>
+                                        @endif
 
                                         <a class=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "
                                             href=" {{ route('blog.edit', $blog) }}">Edit</a>

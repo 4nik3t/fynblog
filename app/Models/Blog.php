@@ -27,6 +27,17 @@ class Blog extends Model
         $this->save();
     }
 
+    public function unpublish()
+    {
+        $this->published_at = null;
+        $this->save();
+    }
+
+    public function scopePublished($query)
+    {
+        $query->where('published_at', '<>', null);
+    }
+
     /**
      * Get the options for generating the slug.
      */

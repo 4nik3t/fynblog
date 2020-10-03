@@ -26,18 +26,11 @@
         </div>
         @endif
 
-        <div class="mt-5 flex flex-row flex-wrap">
-            @foreach ($blogs as $blog)
-                <div class="max-w-sm w-1/4 rounded overflow-hidden shadow-lg m-5 relative">
-                    <a href="{{ route('single_blog_post', $blog->slug) }}" class="absolute top-0 left-0 h-full w-full"></a>
-                    <div class="px-6 py-4">
-                        <div class="font-bold text-xl mb-2">{{ $blog->title }}</div>
-                        <p class="text-gray-700 text-base">
-                            {{ Str::limit($blog->content, 200) }}
-                        </p>
-                    </div>
-                </div>
-            @endforeach
+        <div class="mt-5">
+            <h1 class="text-3xl mt-2">{{ $blog->title }}</h1>
+            <div class="mt-4 block">
+                {{ $blog->content }}
+            </div>
         </div>
         </div>
 
