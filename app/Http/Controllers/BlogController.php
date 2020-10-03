@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBlogPost;
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -17,7 +18,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::with('category')->get();
 
         return view('blog.index', ['blogs' => $blogs]);
     }
@@ -29,7 +30,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        return view('blog.create', ['categories' => Category::all()]);
     }
 
     /**
@@ -70,7 +71,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return view('blog.edit', ['blog' => $blog]);
+        return view('blog.edit', ['blog' => $blog, 'categories' => Category::all()]);
     }
 
     /**

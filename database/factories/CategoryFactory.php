@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BlogFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Blog::class;
+    protected $model = Category::class;
 
     /**
      * Define the model's default state.
@@ -22,10 +22,7 @@ class BlogFactory extends Factory
     public function definition()
     {
         return [
-            'title' => ucfirst(join(' ', $this->faker->words(4))),
-            'content' => join('.', $this->faker->sentences(20)),
-            'category_id' => rand(1, 9),
-            'user_id' => 1,
+            'name' => ucfirst(join(' ', $this->faker->words(2))),
         ];
     }
 }

@@ -17,7 +17,7 @@
                         <tr>
                             <th class="px-4 py-2">#</th>
                             <th class="w-1/4 px-4 py-2">Title</th>
-                            <th class="w-1/4 px-4 py-2">Slug</th>
+                            <th class="w-1/4 px-4 py-2">Category</th>
                             <th class="px-4 py-2">Views</th>
                             <th class="w-1/8 px-4 py-2">Created</th>
                             <th class="w-1/8 px-4 py-2">Published</th>
@@ -31,7 +31,7 @@
                                 <tr>
                                     <td class="border px-4 py-2">{{ $blog->id }}</td>
                                     <td class="border px-4 py-2">{{ $blog->title }}</td>
-                                    <td class="border px-4 py-2">{{ $blog->slug }}</td>
+                                    <td class="border px-4 py-2">{{ $blog->category->name }}</td>
                                     <td class="border px-4 py-2">{{ $blog->views }}</td>
                                     <td class="border px-4 py-2">{{ $blog->created_at->diffForHumans() }}</td>
                                     <td class="border px-4 py-2">

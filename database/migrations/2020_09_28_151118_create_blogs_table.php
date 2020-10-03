@@ -16,6 +16,7 @@ class CreateBlogsTable extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('category_id');
             $table->string('title');
             $table->string('slug');
             $table->text('content');
@@ -26,6 +27,7 @@ class CreateBlogsTable extends Migration
 
         Schema::table('blogs', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -38,6 +40,7 @@ class CreateBlogsTable extends Migration
     {
         Schema::table('blogs', function (Blueprint $table) {
             $table->dropForeign('blogs_user_id_foreign');
+            $table->dropForeign('blogs_category_id_foreign');
         });
 
         Schema::dropIfExists('blogs');

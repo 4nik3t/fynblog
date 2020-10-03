@@ -30,6 +30,7 @@ class StoreBlogPost extends FormRequest
         return [
             'title' => 'required|min:20',
             'content' => 'required',
+            'category_id' => 'required'
         ];
     }
 }

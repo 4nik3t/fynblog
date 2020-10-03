@@ -12,7 +12,7 @@ class Blog extends Model
 {
     use HasFactory, HasSlug;
 
-    protected $fillable = ['title', 'content'];
+    protected $fillable = ['title', 'content', 'category_id'];
 
     protected $dates = ['published_at'];
 
@@ -46,5 +46,10 @@ class Blog extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }

@@ -25,6 +25,24 @@
                             <p class="text-red-400 m-2">{{ $message }}</p>
                             @enderror
                         </div>
+                        <div class="w-full px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="grid-category">
+                                Category
+                            </label>
+                            <select id="grid-category" name="category_id"
+                                class="block mb-3 appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                @foreach ($categories as $category)
+                                    <option @if ($category->id == $blog->category->id)
+                                        selected
+                                @endif
+                                value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                            <p class="text-red-400 m-2">{{ $message }}</p>
+                            @enderror
+                        </div>
                         <div class="w-full px-3">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                 for="grid-last-name">

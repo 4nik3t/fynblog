@@ -13,13 +13,28 @@
                     <div class="flex flex-wrap -mx-3 mb-6">
                         <div class="w-full px-3 mb-6 md:mb-0">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                for="grid-first-name">
+                                for="grid-title">
                                 Title
                             </label>
                             <input name="title"
                                 class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                                id="grid-first-name" type="text" placeholder="Jane">
+                                id="grid-title" type="text" placeholder="Jane">
                             @error('title')
+                            <p class="text-red-400 m-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="w-full px-3 mb-6 md:mb-0">
+                            <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                for="grid-category">
+                                Category
+                            </label>
+                            <select id="grid-category" name="category_id"
+                                class="block mb-3 appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
                             <p class="text-red-400 m-2">{{ $message }}</p>
                             @enderror
                         </div>
