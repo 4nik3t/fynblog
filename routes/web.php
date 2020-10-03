@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
-Route::get('/', function () {
-    $blogs = Blog::published()->get();
-    return view('welcome', ['blogs' => $blogs]);
-})->name('home');
+Route::get('/', [BlogController::class, 'displayPublishedPostList'])->name('home');
 
 Route::get('/post/{slug}', function ($slug) {
     $blog = Blog::where("slug", $slug)->first();

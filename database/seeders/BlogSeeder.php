@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Blog;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class BlogSeeder extends Seeder
 {
@@ -14,6 +15,9 @@ class BlogSeeder extends Seeder
      */
     public function run()
     {
-        Blog::factory(10)->create();
+        Blog::factory(100)->create();
+
+        DB::table('blogs')->where('id', '>', 0)
+            ->update(['published_at' => now()]);
     }
 }

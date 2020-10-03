@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBlogPost;
 use App\Models\Blog;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
@@ -23,6 +23,17 @@ class BlogController extends Controller
         return view('blog.index', ['blogs' => $blogs]);
     }
 
+    public function displayPublishedPostList(Request $request)
+    {
+        $blogs = Blog::published();
+
+        if ($category_id = $request->get('category_id')) {
+            $blogs->where('category_id', $category_id);
+        }
+
+
+        return view('welcome', ['blogs' => $blogs->paginate(6), 'categories' => Category::all()]);
+    }
     /**
      * Show the form for creating a new resource.
      *
